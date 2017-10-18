@@ -6,7 +6,7 @@ var number_of_pages = 8;
 
 // Create an array for pages
 
-var pages_array = []
+var pages_array = [];
 
 // If the page count isn't a multiple of 4, we need to
 // pad the array with blank pages so we have the correct
@@ -23,17 +23,17 @@ if (number_of_pages % 4 != 0){
 // Push each page in the array
 
 for (var i = number_of_pages ; i >= 0; i--) {
-    pages_array.push(i );        
+    pages_array.push(i);        
 }
 
 // Split the array in half
 //
 // ex. [1, 2, 3, 4, 5, 6], [7, 8, 9, blank, blank, blank]
 
-var split_start =  pages_array.length / 2;
-split_end = pages_array.length - 1;
-first_array = pages_array.slice(0,split_start);
-second_array = pages_array.slice(split_start,split_end);
+var split_start =  pages_array.length / 2,
+    split_end = pages_array.length - 1,
+    first_array = pages_array.slice(0,split_start),
+    second_array = pages_array.slice(split_start,split_end);
 
 // Reverse the second half of the array.
 // This is the beginning of the back half of the booklet
@@ -41,7 +41,7 @@ second_array = pages_array.slice(split_start,split_end);
 //                     
 // ex. [blank, blank, blank, 9, 8, 7]
 
-second_array_reversed = second_array.reverse()
+var second_array_reversed = second_array.reverse();
 
 
 // Zip the two arrays together in groups of 2
@@ -54,7 +54,7 @@ second_array_reversed = second_array.reverse()
 
 var page_groups = [];
 for (var i = 0; i < first_array.length; i++) {
-    page_groups[i] = [ first_array[i], second_array_reversed[i] ]
+    page_groups[i] = [ first_array[i], second_array_reversed[i] ];
 }
 
 
@@ -72,20 +72,18 @@ for (var i = 0; i < page_groups.length; i++) {
     var group = page_groups[i];
     if(i % 2 != 0){
         final_groups[i] = page_groups[i].reverse();            
-    } else{
+    } else {
         final_groups[i] = page_groups[i];
     }
 }
-console.log('Final Imposition Order: ' + final_groups)
-
+console.log('Final Imposition Order: ' + final_groups);
 flat_pages_order = [].concat.apply([], final_groups);
 
+booklet_impressions = page_groups.length;
+console.log('Booklet Impressions needed: ' + booklet_impressions);
 
-booklet_impressions = page_groups.length
-console.log('Booklet Impressions needed: ' + booklet_impressions)
-
-booklet_pages = booklet_impressions / 2
-console.log('Final Booklet pages needed: ' + booklet_pages)
+booklet_pages = booklet_impressions / 2;
+console.log('Final Booklet pages needed: ' + booklet_pages);
 
 
 // DEMO MODE
